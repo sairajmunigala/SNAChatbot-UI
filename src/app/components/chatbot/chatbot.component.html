@@ -1,0 +1,32 @@
+<div class="chatbot-icon-div">
+    <img class="chatbot-icon" src="./assets/chatbot-icon.png" alt="chatbot" (click)="toggleChatbot()">
+</div>
+
+<div id="overlay" class="overlay" *ngIf="showChatbotPopup">
+    <div class="chatbot-popup">
+        <div class="header">
+            <span class="title">
+                SNA Chatbot
+            </span>
+            <span class="close-icon" (click)="toggleChatbot()">X</span>
+        </div>
+        <div id="chatbot-body" class="chatbot-body">
+            <div class="row" *ngFor="let message of chat">
+                <div class="left-message" *ngIf="message.owner === 'bot'">
+                    <img class="message-chat-icon" src="../../../assets/chatbot-icon.png" alt="bot">
+                    <div class="message-text">{{message.message}}</div>
+                </div>
+                <div class="right-message" *ngIf="message.owner === 'user'">
+                    <img class="message-chat-icon" src="../../../assets/user.png" alt="bot">
+                    <div class="message-text">{{message.message}}</div>                    
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-search-box">
+            <input type="text" class="search-box" [(ngModel)]="searchText" (keyup.enter)="sendrequest()">
+            <button class="search-btn" (click)="sendrequest()">
+                <img src="../../../assets/arrow.png" alt="arrow">
+            </button>
+        </div>
+    </div>
+</div>
